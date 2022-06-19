@@ -1,4 +1,4 @@
-using BlazorDictionary.Projections.User;
+using BlazorDictionary.Projections.UserService;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>

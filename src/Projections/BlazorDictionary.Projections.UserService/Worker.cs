@@ -1,4 +1,4 @@
-namespace BlazorDictionary.Projections.User
+namespace BlazorDictionary.Projections.UserService
 {
     public class Worker : BackgroundService
     {

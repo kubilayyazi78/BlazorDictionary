@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-BlazorDictionary.Projections.User-ADF1F501-A14E-4364-9DEF-CD2CCE2B26BA</UserSecretsId>
+    <UserSecretsId>dotnet-BlazorDictionary.Projections.UserService-AE93DA5C-FF02-4B12-B60E-3B556EEEFD0D</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
