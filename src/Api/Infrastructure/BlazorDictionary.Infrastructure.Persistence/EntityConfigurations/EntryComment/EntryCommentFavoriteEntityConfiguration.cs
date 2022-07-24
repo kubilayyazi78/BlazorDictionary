@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorDictionary.Infrastructure.Persistence.EntityConfigurations.EntryComment;
+namespace BlazorDictionary.Api.Infrastructure.Persistence.EntityConfigurations.EntryComment;
 
 public class EntryCommentFavoriteEntityConfiguration : BaseEntityConfiguration<EntryCommentFavorite>
 {

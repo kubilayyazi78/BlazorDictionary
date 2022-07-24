@@ -21,23 +21,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{E702E9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorWeb", "BlazorWeb", "{7FD9CEF0-D69F-4A40-9F8C-F9D421905537}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDictionary.Common", "src\Common\BlazorDictionary.Common\BlazorDictionary.Common.csproj", "{9A25ED72-8E27-4F3D-867D-C0229E14DA49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.Common", "src\Common\BlazorDictionary.Common\BlazorDictionary.Common.csproj", "{9A25ED72-8E27-4F3D-867D-C0229E14DA49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDictionary.Api.Domain", "src\Api\Core\BlazorDictionary.Api.Domain\BlazorDictionary.Api.Domain.csproj", "{3C4C68AA-A55D-4670-98D9-DD8DB0DD067B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.Api.Domain", "src\Api\Core\BlazorDictionary.Api.Domain\BlazorDictionary.Api.Domain.csproj", "{3C4C68AA-A55D-4670-98D9-DD8DB0DD067B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDictionary.Infrastructure.Persistence", "src\Api\Infrastructure\BlazorDictionary.Infrastructure.Persistence\BlazorDictionary.Infrastructure.Persistence.csproj", "{B67F7951-304C-45C2-848E-60AC0D932DD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.Api.Infrastructure.Persistence", "src\Api\Infrastructure\BlazorDictionary.Infrastructure.Persistence\BlazorDictionary.Api.Infrastructure.Persistence.csproj", "{B67F7951-304C-45C2-848E-60AC0D932DD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDictionary.Api.Application", "src\Api\Core\BlazorDictionary.Api.Application\BlazorDictionary.Api.Application.csproj", "{770CE3F0-7018-4A2F-96C6-7B3EB445C3C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.Api.Application", "src\Api\Core\BlazorDictionary.Api.Application\BlazorDictionary.Api.Application.csproj", "{770CE3F0-7018-4A2F-96C6-7B3EB445C3C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDictionary.Api.WebApi", "src\Api\WebApi\BlazorDictionary.Api.WebApi\BlazorDictionary.Api.WebApi.csproj", "{4F8FE98F-4681-4459-9362-04412D024B9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.Api.WebApi", "src\Api\WebApi\BlazorDictionary.Api.WebApi\BlazorDictionary.Api.WebApi.csproj", "{4F8FE98F-4681-4459-9362-04412D024B9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDictionary.Projections.FavoriteService", "src\Projections\BlazorDictionary.Projections.FavoriteService\BlazorDictionary.Projections.FavoriteService.csproj", "{6C85D5E8-E99D-4F14-91F2-7863DA70DBB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.Projections.FavoriteService", "src\Projections\BlazorDictionary.Projections.FavoriteService\BlazorDictionary.Projections.FavoriteService.csproj", "{6C85D5E8-E99D-4F14-91F2-7863DA70DBB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDictionary.Projections.VoteService", "src\Projections\BlazorDictionary.Projections.VoteService\BlazorDictionary.Projections.VoteService.csproj", "{EC892C3B-478D-4AA3-9788-36090414B003}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.Projections.VoteService", "src\Projections\BlazorDictionary.Projections.VoteService\BlazorDictionary.Projections.VoteService.csproj", "{EC892C3B-478D-4AA3-9788-36090414B003}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDictionary.WebApp", "src\Clients\BlazorWeb\BlazorDictionary.WebApp\BlazorDictionary.WebApp.csproj", "{2348385F-96B3-4895-9AF0-E3865D4D9F0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.WebApp", "src\Clients\BlazorWeb\BlazorDictionary.WebApp\BlazorDictionary.WebApp.csproj", "{2348385F-96B3-4895-9AF0-E3865D4D9F0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDictionary.Projections.UserService", "src\Projections\BlazorDictionary.Projections.UserService\BlazorDictionary.Projections.UserService.csproj", "{A14BB91D-BB1A-49C1-9381-D0DDBE32FA06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.Projections.UserService", "src\Projections\BlazorDictionary.Projections.UserService\BlazorDictionary.Projections.UserService.csproj", "{A14BB91D-BB1A-49C1-9381-D0DDBE32FA06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

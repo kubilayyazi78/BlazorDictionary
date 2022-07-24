@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorDictionary.Infrastructure.Persistence.EntityConfigurations.EntryComment;
+namespace BlazorDictionary.Api.Infrastructure.Persistence.EntityConfigurations.EntryComment;
 public class EntryCommentVoteEntityConfiguration : BaseEntityConfiguration<EntryCommentVote>
 {
     public override void Configure(EntityTypeBuilder<EntryCommentVote> builder)

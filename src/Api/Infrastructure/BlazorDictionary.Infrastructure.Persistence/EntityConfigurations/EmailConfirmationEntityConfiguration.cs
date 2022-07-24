@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorDictionary.Infrastructure.Persistence.EntityConfigurations;
+namespace BlazorDictionary.Api.Infrastructure.Persistence.EntityConfigurations;
 public class EmailConfirmationEntityConfiguration : BaseEntityConfiguration<EmailConfirmation>
 {
     public override void Configure(EntityTypeBuilder<EmailConfirmation> builder)
