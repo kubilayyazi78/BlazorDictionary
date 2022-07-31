@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorDictionary.Common.ViewModels
+namespace BlazorDictionary.Common.Models
 {
     public enum VoteType
     {

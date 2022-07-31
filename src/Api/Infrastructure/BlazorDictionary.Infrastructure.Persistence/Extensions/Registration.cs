@@ -1,5 +1,4 @@
 ﻿using BlazorDictionary.Api.Application.Interfaces.Repositories;
-using BlazorDictionary.Api.Infrastructure.Persistence.Context;
 using BlazorDictionary.Api.Infrastructure.Persistence.Repositories;
 using BlazorDictionary.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +17,7 @@ public static class Registration
     {
         services.AddDbContext<BlazorDictionaryContext>(conf =>
         {
-            var connStr = configuration["BlazorSozlukDbConnectionString"].ToString();
+            var connStr = configuration["BlazorDictionaryDbConnectionString"].ToString();
             conf.UseSqlServer(connStr, opt =>
             {
                 opt.EnableRetryOnFailure();

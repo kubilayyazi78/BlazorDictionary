@@ -1,4 +1,4 @@
-﻿using BlazorDictionary.Common.ViewModels;
+﻿using BlazorDictionary.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
