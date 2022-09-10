@@ -22,6 +22,8 @@ namespace BlazorDictionary.Api.Application.Mapping
                 .ReverseMap();
             CreateMap<CreateEntryCommand, Entry>()
          .ReverseMap();
+            CreateMap<CreateEntryCommentCommand, EntryComment>()
+     .ReverseMap();
         }
     }
 }
