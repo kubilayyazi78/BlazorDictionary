@@ -14,16 +14,12 @@ namespace BlazorDictionary.Api.Application.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<User, LoginUserViewModel>()
-                .ReverseMap();
-            CreateMap<User, CreateUserCommand>()
-                .ReverseMap();
-            CreateMap<User, UpdateUserCommand>()
-                .ReverseMap();
-            CreateMap<CreateEntryCommand, Entry>()
-         .ReverseMap();
-            CreateMap<CreateEntryCommentCommand, EntryComment>()
-     .ReverseMap();
+            CreateMap<User, LoginUserViewModel>().ReverseMap();
+            CreateMap<User, CreateUserCommand>().ReverseMap();
+            CreateMap<User, UpdateUserCommand>().ReverseMap();
+            CreateMap<CreateEntryCommand, Entry>().ReverseMap();
+            CreateMap<CreateEntryCommentCommand, EntryComment>().ReverseMap();
+            CreateMap<Entry, GetEntriesViewModel>().ForMember(x => x.CommentCount, y => y.MapFrom(z => z.EntryComments.Count));
         }
     }
 }
