@@ -7,29 +7,36 @@ namespace BlazorDictionary.Api.WebApi.Infrastructure.Extensions;
 
 public static class ApplicationBuilderExtension
 {
-    public static IApplicationBuilder ConfigureExceptionHandling (this IApplicationBuilder app, bool includeExceptionDetails=false,bool useDefaultHandlingResponse=true,
-        Func<HttpContext,Exception,Task> handleException = null)
+    public static IApplicationBuilder ConfigureExceptionHandling(this IApplicationBuilder app, bool includeExceptionDetails = false, bool useDefaultHandlingResponse = true,
+        Func<HttpContext, Exception, Task> handleException = null)
     {
-        app.Run(context =>
+
+        app.UseExceptionHandler(options =>
         {
-            var exceptionObject = context.Features.Get<IExceptionHandlerFeature>();
-            if (!useDefaultHandlingResponse && handleException==null)
+            options.Run(context =>
             {
-                throw new ArgumentException(nameof(handleException),
-                $"{nameof(handleException)} cannot be null when {nameof(useDefaultHandlingResponse)} is false");
-            }
+                var exceptionObject = context.Features.Get<IExceptionHandlerFeature>();
+                if (!useDefaultHandlingResponse && handleException == null)
+                {
+                    throw new ArgumentException(nameof(handleException),
+                    $"{nameof(handleException)} cannot be null when {nameof(useDefaultHandlingResponse)} is false");
+                }
 
-            if (!useDefaultHandlingResponse && handleException !=null)
-            {
-                return handleException(context, exceptionObject.Error);
-            }
+                if (!useDefaultHandlingResponse && handleException != null)
+                {
+                    return handleException(context, exceptionObject.Error);
+                }
 
-            return DefaultHandleException(context, exceptionObject.Error, includeExceptionDetails);
+                return DefaultHandleException(context, exceptionObject.Error, includeExceptionDetails);
+            });
+
         });
+
+
 
         return app;
     }
-    private static async Task DefaultHandleException (HttpContext context, Exception exception , bool includeExceptionDetails)
+    private static async Task DefaultHandleException(HttpContext context, Exception exception, bool includeExceptionDetails)
     {
         HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
         string message = "Internal server error occured!";
@@ -40,6 +47,7 @@ public static class ApplicationBuilderExtension
         }
         if (exception is DatabaseValidationException)
         {
+            statusCode = HttpStatusCode.BadRequest;
             var validationResponse = new ValidationResponseModel(exception.Message);
 
             await WriteResponse(context, statusCode, validationResponse);
@@ -53,9 +61,9 @@ public static class ApplicationBuilderExtension
         };
 
         await WriteResponse(context, statusCode, res);
-        
+
     }
-    private static async Task WriteResponse(HttpContext context , HttpStatusCode statusCode , object responseObj)
+    private static async Task WriteResponse(HttpContext context, HttpStatusCode statusCode, object responseObj)
     {
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = (int)statusCode;
