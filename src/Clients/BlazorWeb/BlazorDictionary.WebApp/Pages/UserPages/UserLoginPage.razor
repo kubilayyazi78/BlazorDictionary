@@ -1,0 +1,21 @@
+﻿@page "/login"
+
+@code {
+    [Inject]
+    IIdentityService identityService { get; set; }
+
+    private LoginUserCommand loginCommand = new();
+
+    public async Task LoginProcess()
+    {
+        try
+        {
+            var res = await identityService.Login(loginCommand);
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+}

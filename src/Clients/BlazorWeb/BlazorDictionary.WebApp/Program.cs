@@ -5,6 +5,7 @@ using BlazorDictionary.WebApp.Infrastructure.Services.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using BlazorDictionary.WebApp.Infrastructure.Auth;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -27,5 +28,8 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IIdentityService, IdentityService>();
 
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddAuthorizationCore();
 await builder.Build().RunAsync();
