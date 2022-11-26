@@ -2,6 +2,7 @@
 using BlazorDictionary.Common.Infrastructure.Results;
 using BlazorDictionary.Common.Models.Queries;
 using BlazorDictionary.Common.Models.RequestModels;
+using BlazorDictionary.WebApp.Infrastructure.Auth;
 using BlazorDictionary.WebApp.Infrastructure.Extensions;
 using BlazorDictionary.WebApp.Infrastructure.Services.Interfaces;
 using Blazored.LocalStorage;
@@ -18,16 +19,16 @@ public class IdentityService : IIdentityService
         PropertyNameCaseInsensitive = true
     };
 
-    private readonly HttpClient _httpClient;
-    private readonly ISyncLocalStorageService _syncLocalStorageService;
-    private readonly AuthenticationStateProvider _authenticationStateProvider;
+    private readonly HttpClient httpClient;
+    private readonly ISyncLocalStorageService syncLocalStorageService;
+    private readonly AuthenticationStateProvider authenticationStateProvider;
 
 
     public IdentityService(HttpClient httpClient, ISyncLocalStorageService syncLocalStorageService, AuthenticationStateProvider authenticationStateProvider)
     {
-        _httpClient = httpClient;
-        _syncLocalStorageService = syncLocalStorageService;
-        _authenticationStateProvider = authenticationStateProvider;
+        this.httpClient = httpClient;
+        this.syncLocalStorageService = syncLocalStorageService;
+        this.authenticationStateProvider = authenticationStateProvider;
     }
 
 
@@ -35,23 +36,23 @@ public class IdentityService : IIdentityService
 
     public string GetUserToken()
     {
-        return _syncLocalStorageService.GetToken();
+        return syncLocalStorageService.GetToken();
     }
 
     public string GetUserName()
     {
-        return _syncLocalStorageService.GetToken();
+        return syncLocalStorageService.GetToken();
     }
 
     public Guid GetUserId()
     {
-        return _syncLocalStorageService.GetUserId();
+        return syncLocalStorageService.GetUserId();
     }
 
     public async Task<bool> Login(LoginUserCommand command)
     {
         string responseStr;
-        var httpResponse = await _httpClient.PostAsJsonAsync("/api/User/Login", command);
+        var httpResponse = await httpClient.PostAsJsonAsync("/api/User/Login", command);
 
         if (httpResponse != null && !httpResponse.IsSuccessStatusCode)
         {
@@ -72,13 +73,13 @@ public class IdentityService : IIdentityService
 
         if (!string.IsNullOrEmpty(response.Token)) // login success
         {
-            _syncLocalStorageService.SetToken(response.Token);
-            _syncLocalStorageService.SetUsername(response.UserName);
-            _syncLocalStorageService.SetUserId(response.Id);
+            syncLocalStorageService.SetToken(response.Token);
+            syncLocalStorageService.SetUsername(response.UserName);
+            syncLocalStorageService.SetUserId(response.Id);
 
-           // ((AuthStateProvider)authenticationStateProvider).NotifyUserLogin(response.UserName, response.Id);
+            ((AuthStateProvider)authenticationStateProvider).NotifyUserLogin(response.UserName, response.Id);
 
-           _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", response.Token);
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", response.Token);
 
             return true;
         }
@@ -88,11 +89,11 @@ public class IdentityService : IIdentityService
 
     public void Logout()
     {
-        _syncLocalStorageService.RemoveItem(LocalStorageExtension.TokenName);
-        _syncLocalStorageService.RemoveItem(LocalStorageExtension.UserName);
-        _syncLocalStorageService.RemoveItem(LocalStorageExtension.UserId);
+        syncLocalStorageService.RemoveItem(LocalStorageExtension.TokenName);
+        syncLocalStorageService.RemoveItem(LocalStorageExtension.UserName);
+        syncLocalStorageService.RemoveItem(LocalStorageExtension.UserId);
 
-       // ((AuthStateProvider)authenticationStateProvider).NotifyUserLogout();
-        _httpClient.DefaultRequestHeaders.Authorization = null;
+        ((AuthStateProvider)authenticationStateProvider).NotifyUserLogout();
+        httpClient.DefaultRequestHeaders.Authorization = null;
     }
 }

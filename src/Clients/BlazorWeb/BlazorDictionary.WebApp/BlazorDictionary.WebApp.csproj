@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\UserPages\UserLogoutPage.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.3" />
@@ -18,6 +22,18 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\BlazorDictionary.Common\BlazorDictionary.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\UserPages\UserLogoutPage.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\UserPages\UserLogoutPage.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\UserPages\UserLogoutPage.razor" />
   </ItemGroup>
 
 </Project>

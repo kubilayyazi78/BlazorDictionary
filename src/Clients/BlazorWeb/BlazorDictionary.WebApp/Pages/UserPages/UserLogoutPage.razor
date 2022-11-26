@@ -1,0 +1,18 @@
+﻿@page "/logout"
+@using BlazorDictionary.WebApp.Infrastructure.Services.Interfaces;
+
+@code {
+
+    [Inject]
+    IIdentityService identityService { get; set; }
+
+    [Inject]
+    NavigationManager navigationManager { get; set; }
+
+    protected override void OnInitialized()
+    {
+        identityService.Logout();
+        navigationManager.NavigateTo("/");
+    }
+
+}

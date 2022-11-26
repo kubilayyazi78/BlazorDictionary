@@ -6,11 +6,13 @@ using BlazorDictionary.Common.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorDictionary.Api.WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class VoteController : BaseController
 {
     private readonly IMediator mediator;

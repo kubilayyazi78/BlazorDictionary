@@ -12,6 +12,7 @@ namespace BlazorDictionary.Api.WebApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+
 public class UserController : BaseController
 {
     private readonly IMediator mediator;
@@ -39,6 +40,7 @@ public class UserController : BaseController
 
     [HttpPost]
     [Route("Login")]
+    [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
     {
         var res = await mediator.Send(command);
@@ -46,6 +48,8 @@ public class UserController : BaseController
         return Ok(res);
     }
     [HttpPost]
+    [Authorize]
+
     public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
     {
         var guid = await mediator.Send(command);
@@ -53,6 +57,7 @@ public class UserController : BaseController
     }
     [HttpPost]
     [Route("Update")]
+    [Authorize]
     public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand command)
     {
         var guid = await mediator.Send(command);
