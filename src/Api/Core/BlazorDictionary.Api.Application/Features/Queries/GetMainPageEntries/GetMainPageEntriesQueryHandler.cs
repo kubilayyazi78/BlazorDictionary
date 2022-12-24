@@ -35,7 +35,7 @@ public class GetMainPageEntriesQueryHandler : IRequestHandler<GetMainPageEntries
             CreatedByUserName = i.CreatedBy.UserName,
             VoteType = request.UserId.HasValue && i.EntryVotes.Any(j => j.CreatedById == request.UserId)
             ? i.EntryVotes.FirstOrDefault(j => j.CreatedById == request.UserId).VoteType
-            : Common.Models.VoteType.None
+            : BlazorDictionary.Common.Models.VoteType.None
 
         });
 
