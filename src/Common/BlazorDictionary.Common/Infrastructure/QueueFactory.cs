@@ -1,5 +1,6 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 
@@ -35,6 +36,28 @@ public static class QueueFactory
         consumer.Model.QueueDeclare(queue: queueName, durable: false, exclusive: false, autoDelete: false, null);
 
         consumer.Model.QueueBind(queueName, exchangeName, queueName);
+
+        return consumer;
+    }
+    public static EventingBasicConsumer Receive <T>(this EventingBasicConsumer consumer , Action<T> act)
+    {
+        consumer.Received += (m, eventArgs) =>
+        {
+            var body = eventArgs.Body.ToArray();
+            var message =Encoding.UTF8.GetString(body);
+
+            var model = JsonSerializer.Deserialize<T>(message);
+
+            act(model);
+
+            consumer.Model.BasicAck(eventArgs.DeliveryTag, false);
+        };
+
+        return consumer;
+    }
+    public static EventingBasicConsumer StartConsuming(this EventingBasicConsumer consumer, string queueName)
+    {
+        consumer.Model.BasicConsume(queue: queueName, autoAck: false, consumer: consumer);
 
         return consumer;
     }
