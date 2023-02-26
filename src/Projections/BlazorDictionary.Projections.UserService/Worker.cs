@@ -1,21 +1,42 @@
-namespace BlazorDictionary.Projections.UserService
+using BlazorDictionary.Common;
+using BlazorDictionary.Common.Events.User;
+using BlazorDictionary.Common.Infrastructure;
+using BlazorDictionary.Projections.UserService.Services;
+
+namespace BlazorDictionary.Projections.UserService;
+
+public class Worker : BackgroundService
 {
-    public class Worker : BackgroundService
+    private readonly ILogger<Worker> _logger;
+    private readonly UserService.Services.UserService userService;
+    private readonly EmailService emailService;
+
+    public Worker(ILogger<Worker> logger, UserService.Services.UserService userService, EmailService emailService)
     {
-        private readonly ILogger<Worker> _logger;
+        _logger = logger;
+        this.userService = userService;
+        this.emailService = emailService;
+    }
 
-        public Worker(ILogger<Worker> logger)
-        {
-            _logger = logger;
-        }
-
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            while (!stoppingToken.IsCancellationRequested)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        QueueFactory.CreateBasicConsumer()
+            .EnsureExchange(BlazorConstants.UserExchangeName)
+            .EnsureQueue(BlazorConstants.UserEmailChangedQueueName, BlazorConstants.UserExchangeName)
+            .Receive<UserEmailChangedEvent>(user =>
             {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
-            }
-        }
+                // DB Insert 
+
+                var confirmationId = userService.CreateEmailConfirmation(user).GetAwaiter().GetResult();
+
+                // Generate Link
+
+                var link = emailService.GenerateConfirmationLink(confirmationId);
+
+                // Send Email
+
+                emailService.SendEmail(user.NewEmailAddress, link).GetAwaiter().GetResult();
+            })
+            .StartConsuming(BlazorConstants.UserEmailChangedQueueName);
     }
 }
