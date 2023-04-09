@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  blazordictionary.api.webapi:
+    container_name: c_blazordictionaryapi
+    image: ${DOCKER_REGISTRY-}blazordictionaryapiwebapi
+    build:
+      context: .
+      dockerfile: src/Api/WebApi/BlazorDictionary.Api.WebApi/Dockerfile
+
+
+  blazordictionary.webapp:
+    container_name: c_blazordictionarywebapp
+    image: ${DOCKER_REGISTRY-}blazordictionarywebapp
+    build:
+      context: .
+      dockerfile: src/Clients/BlazorWeb/BlazorDictionary.WebApp/Dockerfile
+
+
+
+
+
+
+  blazordictionary.projections.voteservice:
+    container_name: c_blazordictionaryvote
+    image: ${DOCKER_REGISTRY-}blazordictionaryprojectionsvoteservice
+    build:
+      context: .
+      dockerfile: src/Projections/BlazorDictionary.Projections.VoteService/Dockerfile
+
+
+  blazordictionary.projections.userservice:
+    container_name: c_blazordictionaryuser
+    image: ${DOCKER_REGISTRY-}blazordictionaryprojectionsuserservice
+    build:
+      context: .
+      dockerfile: src/Projections/BlazorDictionary.Projections.UserService/Dockerfile
+
+
+  blazordictionary.projections.favoriteservice:
+    container_name: c_blazordictionaryfavorite
+    image: ${DOCKER_REGISTRY-}blazordictionaryprojectionsfavoriteservice
+    build:
+      context: .
+      dockerfile: src/Projections/BlazorDictionary.Projections.FavoriteService/Dockerfile
+
+

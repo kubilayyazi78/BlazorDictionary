@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.WebApp", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDictionary.Projections.UserService", "src\Projections\BlazorDictionary.Projections.UserService\BlazorDictionary.Projections.UserService.csproj", "{A14BB91D-BB1A-49C1-9381-D0DDBE32FA06}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5D889BEE-3575-4F9A-9210-E09EECF74AC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{A14BB91D-BB1A-49C1-9381-D0DDBE32FA06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A14BB91D-BB1A-49C1-9381-D0DDBE32FA06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A14BB91D-BB1A-49C1-9381-D0DDBE32FA06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D889BEE-3575-4F9A-9210-E09EECF74AC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D889BEE-3575-4F9A-9210-E09EECF74AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D889BEE-3575-4F9A-9210-E09EECF74AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D889BEE-3575-4F9A-9210-E09EECF74AC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
